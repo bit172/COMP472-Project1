@@ -2,7 +2,10 @@ import numpy as np
 
 
 class Node:
+    n = 0
+
     def __init__(self, n, initial):
+        Node.n = n
         board = np.zeros((n, n), dtype=np.uint8)
         index = 0
         for i in range(n):
@@ -12,9 +15,11 @@ class Node:
         self.v = board
 
     def find_children(self):
-        n = len(self.v[0])
-        for i in range(n):
-            for j in range(n):
+        children = np.empty([Node.n**2], dtype=object)
+
+        for i in range(Node.n):
+            for j in range(Node.n):
+                # copy the current state of the board
                 child = np.array(self.v)
                 # change the touched token
                 if child[i, j]:

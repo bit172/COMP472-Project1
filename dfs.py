@@ -6,7 +6,7 @@ f = open('input.txt', "r")
 params = [int(val) if idx < 2 else val for idx, val in enumerate(f.read().split(" "))]
 
 initial_board = Node(params[0], params[2])
-goal = np.zeros((params[0], params[0]), dtype=int)
+goal = np.zeros((params[0], params[0]), dtype=np.uint8)
 max_d = params[1]
 
 
