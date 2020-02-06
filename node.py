@@ -20,6 +20,7 @@ class Node:
                 board[i, j] = initial[index]
                 index += 1
         self.v = board
+        self.p = None
         self.touched = None
 
     def find_children(self):

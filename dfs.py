@@ -10,29 +10,43 @@ goal = np.zeros((params[0], params[0]), dtype=np.uint8)
 max_d = params[1]
 
 
+def exists_in_closed(closed_list, current):
+    exists = False
+    for b in closed_list:
+        if np.array_equal(b, current):
+            exists = True
+    return exists
+
+
 def dfs():
     # Open Stack with elements like (current board value, parent, depth)
-    open_stack = [(initial_board, None, 1)]
+    open_stack = [(initial_board, 1)]
     closed_list = []
 
     while open_stack:
         current = open_stack.pop()
-        closed_list.append(current)
-        depth = current[2] + 1
+        if not exists_in_closed(closed_list, current[0].v):
+            closed_list.append(current[0].v)
+
+        depth = current[1] + 1
 
         if np.array_equal(current[0].v, goal):
-            return closed_list
+            return current[0]
 
         if depth <= max_d:
             children = current[0].find_children()
             for child in children:
-                if child not in closed_list:
-                    open_stack.append((child, current[0], depth))
+                if not exists_in_closed(closed_list, child):
+                    child.p = current[0]
+                    open_stack.append((child, depth))
         else:
             continue
 
 
 if __name__ == '__main__':
-    for x in dfs():
-        print(x[0].v)
-
+    sol_node = dfs()
+    parent = sol_node
+    while parent:
+        print(parent.v)
+        print(parent.touched)
+        parent = parent.p
