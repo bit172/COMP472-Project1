@@ -15,8 +15,8 @@ class Node:
         self.v = board
 
     def find_children(self):
-        children = np.empty([Node.n**2], dtype=object)
-
+        children = np.empty([Node.n ** 2], dtype=object)
+        index = 0
         for i in range(Node.n):
             for j in range(Node.n):
                 # copy the current state of the board
@@ -27,10 +27,26 @@ class Node:
                 else:
                     child[i, j] = 1
                 # left
-                if j - 1 > 0:
-                    pass
+                if j - 1 >= 0:
+                    if child[i, j - 1]:
+                        child[i, j - 1] = 0
+                    else:
+                        child[i, j - 1] = 1
                 # right
-
+                if j + 1 > Node.n - 1:
+                    if child[i, j + 1]:
+                        child[i, j + 1] = 0
+                    else:
+                        child[i, j + 1] = 1
                 # top
-
+                if i - 1 >= 0:
+                    if child[i - 1, j]:
+                        child[i - 1, j] = 0
+                    else:
+                        child[i - 1, j] = 1
                 # bottom
+                if i + 1 > Node.n - 1:
+                    if child[i + 1, j]:
+                        child[i + 1, j] = 0
+                    else:
+                        child[i + 1, j] = 1
