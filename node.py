@@ -64,8 +64,8 @@ class Node:
                 string_children[index]["child"] = stringify(child)
                 string_children[index]["touched"] = touched
                 index += 1
-        # sort the children
-        string_children = np.sort(string_children)
+        # sort the children (in reverse order for adding to stack)
+        string_children[::-1].sort()
         for idx, string_child in enumerate(string_children):
             children[idx] = Node(Node.n, string_child["child"])
             children[idx].touched = string_child["touched"]
