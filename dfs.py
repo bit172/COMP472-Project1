@@ -15,6 +15,7 @@ def exists_in_closed(closed_list, current):
     for b in closed_list:
         if np.array_equal(b, current):
             exists = True
+            break
     return exists
 
 
@@ -27,7 +28,8 @@ def dfs():
         current = open_stack.pop()
         if not exists_in_closed(closed_list, current[0].v):
             closed_list.append(current[0].v)
-
+        else:
+            continue
         depth = current[1] + 1
 
         if np.array_equal(current[0].v, goal):
