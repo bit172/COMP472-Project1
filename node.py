@@ -3,9 +3,8 @@ import numpy as np
 
 def stringify(board):
     s = ""
-    for i in range(Node.n):
-        for j in range(Node.n):
-            s += str(board[i, j])
+    for c in np.nditer(board):
+        s += str(c)
     return s
 
 

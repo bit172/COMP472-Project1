@@ -20,12 +20,19 @@ def dfs():
         closed_list.append(current)
         depth = current[2] + 1
 
-        if np.array_equal(current, goal):
+        if np.array_equal(current[0].v, goal):
             return closed_list
 
         if depth <= max_d:
-            pass
+            children = current[0].find_children()
+            for child in children:
+                if child not in closed_list:
+                    open_stack.append((child, current[0], depth))
+        else:
+            continue
 
 
 if __name__ == '__main__':
-    dfs()
+    for x in dfs():
+        print(x[0].v)
+
