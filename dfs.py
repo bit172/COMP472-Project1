@@ -22,14 +22,11 @@ def exists_in_closed(closed_list, current):
 def dfs():
     # Open Stack with elements like (current board value, parent, depth)
     open_stack = [(initial_board, 1)]
-    closed_list = []
+    closed_list = set()
 
     while open_stack:
         current = open_stack.pop()
-        if not exists_in_closed(closed_list, current[0].v):
-            closed_list.append(current[0].v)
-        else:
-            continue
+        closed_list.add(current[0].string_v)
         depth = current[1] + 1
 
         if np.array_equal(current[0].v, goal):
@@ -38,7 +35,7 @@ def dfs():
         if depth <= max_d:
             children = current[0].find_children()
             for child in children:
-                if not exists_in_closed(closed_list, child):
+                if child.string_v not in closed_list:
                     child.p = current[0]
                     open_stack.append((child, depth))
 
@@ -46,6 +43,8 @@ def dfs():
 if __name__ == '__main__':
     sol_node = dfs()
     parent = sol_node
+    if not parent:
+        print("no solution")
     while parent:
         print(parent.v)
         print(parent.touched)

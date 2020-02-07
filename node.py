@@ -20,6 +20,7 @@ class Node:
                 board[i, j] = initial[index]
                 index += 1
         self.v = board
+        self.string_v = stringify(board)
         self.p = None
         self.touched = None
 
