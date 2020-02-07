@@ -19,12 +19,19 @@ class Node:
             for j in range(n):
                 board[i, j] = initial[index]
                 index += 1
+        # State of board
         self.v = board
+        # String value of board
         self.string_v = stringify(board)
+        # Parent of board
         self.p = None
+        # Position of touched token to get to current board
         self.touched = None
 
     def find_children(self):
+        # Data type of the string_child array which consists of
+        # a string representation of the state of the child board and
+        # a string for the position of the token touched to reach it
         dt = np.dtype([('child', np.unicode_, Node.n ** 2), ('touched', np.unicode_, 2)])
         string_children = np.empty([Node.n ** 2], dtype=dt)
         children = np.empty([Node.n ** 2], dtype=object)
@@ -63,11 +70,13 @@ class Node:
                         child[i + 1, j] = 0
                     else:
                         child[i + 1, j] = 1
+                # insert the child and the position
                 string_children[index]["child"] = stringify(child)
                 string_children[index]["touched"] = touched
                 index += 1
         # sort the children (in reverse order for adding to stack)
         string_children[::-1].sort()
+        # create the nodes using the string version of the board
         for idx, string_child in enumerate(string_children):
             children[idx] = Node(Node.n, string_child["child"])
             children[idx].touched = string_child["touched"]
