@@ -11,6 +11,14 @@ max_d = params[1]
 
 
 def exists_in_closed(closed_list, current):
+    """
+    Checks if a board state exists in the closed_list
+
+    :param closed_list: closed list
+    :param current: board to test
+    :return: if the board is in the closed list
+    """
+
     exists = False
     for b in closed_list:
         if np.array_equal(b, current):
