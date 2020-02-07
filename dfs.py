@@ -41,8 +41,6 @@ def dfs():
                 if not exists_in_closed(closed_list, child):
                     child.p = current[0]
                     open_stack.append((child, depth))
-        else:
-            continue
 
 
 if __name__ == '__main__':
