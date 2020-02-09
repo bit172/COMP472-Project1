@@ -14,7 +14,7 @@ f.close()
 
 
 def touched_to_string(n):
-    return str(chr(int(n[0]) + 65)) + n[1]
+    return str(chr(int(n[0]) + 65)) + str(int(n[1]) + 1)
 
 
 def dfs(params, search_file):
