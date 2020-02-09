@@ -28,9 +28,10 @@ def dfs(params, search_file):
     while open_stack:
         current = open_stack.pop()
         # adding depth to closed_set
-        closed_set.add((current[0].string_v, current[1]))
+        # closed_set.add((current[0].string_v, current[1]))
+
         # adding the board only
-        # closed_set.add(current[0].string_v)
+        closed_set.add(current[0].string_v)
         search_file.write("0 0 0 " + current[0].string_v + "\n")
         depth = current[1] + 1
 
@@ -41,9 +42,9 @@ def dfs(params, search_file):
             children = current[0].find_children()
             for child in children:
                 # checking for the board only
-                # if child.string_v not in closed_set:
+                if child.string_v not in closed_set:
                 # checking for the board and depth
-                if (child.string_v, depth) not in closed_set:
+                # if (child.string_v, depth) not in closed_set:
                     child.p = current[0]
                     open_stack.append((child, depth))
 
