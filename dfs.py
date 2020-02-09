@@ -1,16 +1,16 @@
 import numpy as np
 from node import Node
 
-f1 = open('input.txt', "r")
+f = open('input.txt', "r")
 
-puzzles = f1.readlines()
+puzzles = f.readlines()
 input_puzzles = []
 for puzzle in puzzles:
     # Converts all inputs into ints except the last one
-    input_puzzle = [int(val) if idx < 2 else val for idx, val in enumerate(puzzle.strip().split(" "))]
+    input_puzzle = [val if idx == 3 else int(val) for idx, val in enumerate(puzzle.strip().split(" "))]
     input_puzzles.append(input_puzzle)
 
-f1.close()
+f.close()
 
 
 def touched_to_string(n):
@@ -18,7 +18,7 @@ def touched_to_string(n):
 
 
 def dfs(params, search_file):
-    initial_board = Node(params[0], params[2])
+    initial_board = Node(params[0], params[3])
     goal = np.zeros((params[0], params[0]), dtype=np.uint8)
     max_d = params[1]
     # Open Stack with elements like (current board value, parent, depth)
@@ -27,7 +27,10 @@ def dfs(params, search_file):
 
     while open_stack:
         current = open_stack.pop()
-        closed_set.add(current[0].string_v)
+        # adding depth to closed_set
+        closed_set.add((current[0].string_v, current[1]))
+        # adding the board only
+        # closed_set.add(current[0].string_v)
         search_file.write("0 0 0 " + current[0].string_v + "\n")
         depth = current[1] + 1
 
@@ -37,7 +40,10 @@ def dfs(params, search_file):
         if depth <= max_d:
             children = current[0].find_children()
             for child in children:
-                if child.string_v not in closed_set:
+                # checking for the board only
+                # if child.string_v not in closed_set:
+                # checking for the board and depth
+                if (child.string_v, depth) not in closed_set:
                     child.p = current[0]
                     open_stack.append((child, depth))
 
