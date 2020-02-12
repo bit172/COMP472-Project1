@@ -58,6 +58,7 @@ if __name__ == '__main__':
         f2.close()
         if not solution:
             f1.write("no solution")
+            count += 1
             continue
         parent = solution
         solution_path = []
