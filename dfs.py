@@ -1,10 +1,12 @@
 import numpy as np
 from node import Node
+from queue import PriorityQueue
 
 f = open('input.txt', "r")
 
 puzzles = f.readlines()
 input_puzzles = []
+
 for puzzle in puzzles:
     # Converts all inputs into ints except the last one
     input_puzzle = [val if idx == 3 else int(val) for idx, val in enumerate(puzzle.strip().split(" "))]
@@ -43,10 +45,42 @@ def dfs(params, search_file):
             for child in children:
                 # checking for the board only
                 if child.string_v not in closed_set:
-                # checking for the board and depth
-                # if (child.string_v, depth) not in closed_set:
+                    # checking for the board and depth
+                    # if (child.string_v, depth) not in closed_set:
                     child.p = current[0]
                     open_stack.append((child, depth))
+
+
+def bfs(params, search_file):
+    open_q = PriorityQueue()
+    closed = set()
+    current = open_q.get()
+    length = 0
+    max_l = params[2]
+    goal = np.zeros((params[0], params[0]), dtype=np.uint8)
+
+    while length <= max_l:
+        if current not in closed:
+            closed.add(current)
+            length += 1
+        else:
+            continue
+
+        if current == goal:
+            return current
+
+        for child in current.find_children():
+            newChild = (h(child), child)
+            open_q.put(newChild)
+
+
+def h(x):
+    black = 0
+    for i in range(Node.n):
+        for j in range(Node.n):
+            if x[i, j] == 1:
+                black += 1
+    return black
 
 
 if __name__ == '__main__':
