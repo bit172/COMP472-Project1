@@ -8,4 +8,4 @@ https://github.com/bit172/COMP472-Project1
 4. `cd` into the project folder
 5. Edit the `input.txt` file and add puzzles to solve
 6. Run `module load anaconda3`
-7. Run `python3 dfs.py`
+7. Run `python3 main.py`
