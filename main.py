@@ -46,6 +46,6 @@ if __name__ == "__main__":
 
     f.close()
 
-    # Start the search algorithm and write to files
+    # Select a search algorithm and write to files
     search_context = Context(DFS())
     solve_and_write(search_context, 'dfs')
