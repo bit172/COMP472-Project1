@@ -1,15 +1,17 @@
+
 from context import Context
 
 from dfs import DFS
+from bfs import BFS
 
 
 def touched_to_string(n):
     return str(chr(int(n[0]) + 65)) + str(int(n[1]) + 1)
 
 
-def solve_and_write(context, search_type):
+def solve_and_write(context, search_type, ip):
     count = 0
-    for i in input_puzzles:
+    for i in ip:
         f1 = open(f"{count}_{search_type}_solution.txt", "w")
         f2 = open(f"{count}_{search_type}_search.txt", "w")
         solution = context.find_solution(i, f2)
@@ -48,4 +50,7 @@ if __name__ == "__main__":
 
     # Select a search algorithm and write to files
     search_context = Context(DFS())
-    solve_and_write(search_context, 'dfs')
+    solve_and_write(search_context, 'dfs', input_puzzles)
+
+    search_context.strategy = BFS()
+    solve_and_write(search_context, 'bfs', input_puzzles)

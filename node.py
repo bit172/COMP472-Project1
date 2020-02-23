@@ -1,5 +1,7 @@
 import numpy as np
 
+from heuristics import h
+
 
 def stringify(board):
     s = ""
