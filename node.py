@@ -30,6 +30,8 @@ class Node:
         self.p = None
         # Position of touched token to get to current board
         self.touched = None
+        # Add the heuristic
+        self.h = h(self.string_v)
 
     def find_children(self):
         # Data type of the string_child array which consists of

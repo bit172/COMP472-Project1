@@ -40,5 +40,5 @@ class BFS(Strategy):
 
             for child in children:
                 child.p = current.node
-                new_child = PQItem(h(child.string_v), child)
+                new_child = PQItem(child.h, child)
                 open_q.put(new_child)
