@@ -36,7 +36,7 @@ class BFS(Strategy):
             if np.array_equal(current.node.v, goal):
                 return current.node
 
-            children = current.node.find_children()
+            children = current.node.find_children(False)
 
             for child in children:
                 child.p = current.node

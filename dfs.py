@@ -28,7 +28,7 @@ class DFS(Strategy):
                 return current[0]
 
             if depth <= max_d:
-                children = current[0].find_children()
+                children = current[0].find_children(True)
                 for child in children:
                     # checking for the board only
                     if child.string_v not in closed_set:
