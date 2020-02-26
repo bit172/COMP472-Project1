@@ -1,4 +1,4 @@
-class PQItem:
+class PQBFSItem:
     def __init__(self, h, node):
         self.h = h
         self.node = node

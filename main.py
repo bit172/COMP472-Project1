@@ -3,6 +3,7 @@ from context import Context
 
 from dfs import DFS
 from bfs import BFS
+from a_star import A_star
 import os
 
 from time import time
@@ -65,7 +66,10 @@ if __name__ == "__main__":
 
     # Select a search algorithm and write to files
     search_context = Context(DFS())
-    solve_and_write(search_context, 'dfs', input_puzzles)
+    # solve_and_write(search_context, 'dfs', input_puzzles)
 
     search_context.strategy = BFS()
     solve_and_write(search_context, 'bfs', input_puzzles)
+
+    search_context.strategy = A_star()
+    solve_and_write(search_context, 'a_star', input_puzzles)
