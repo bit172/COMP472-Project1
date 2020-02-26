@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # Select a search algorithm and write to files
     search_context = Context(DFS())
-    # solve_and_write(search_context, 'dfs', input_puzzles)
+    solve_and_write(search_context, 'dfs', input_puzzles)
 
     search_context.strategy = BFS()
     solve_and_write(search_context, 'bfs', input_puzzles)
