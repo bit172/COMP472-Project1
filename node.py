@@ -1,6 +1,6 @@
 import numpy as np
 
-from heuristics import h2
+from heuristics import h2, h
 
 
 def stringify(board):
@@ -31,7 +31,7 @@ class Node:
         # Position of touched token to get to current board
         self.touched = None
         # Add the heuristic
-        #self.h = h(self.string_v)
+        # self.h = h(self.string_v)
         self.h = h2(board, n)
 
 

@@ -17,6 +17,7 @@ class BFS(Strategy):
 
         open_q = PriorityQueue()
         open_q.put(PQItem(h2(initial_board.v, params[0]), initial_board))
+        # open_q.put(PQItem(h(initial_board.string_v), initial_board))
 
         closed = set()
 

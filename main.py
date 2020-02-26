@@ -3,12 +3,22 @@ from context import Context
 
 from dfs import DFS
 from bfs import BFS
+import os
 
+from time import time
+def performance(fn):
+  def wrapper(*args, **kwargs):
+    t1 = time()
+    result = fn(*args, **kwargs)
+    t2 = time()
+    print(f'took {t2-t1}')
+    return result
+  return wrapper
 
 def touched_to_string(n):
     return str(chr(int(n[0]) + 65)) + str(int(n[1]) + 1)
 
-
+@performance
 def solve_and_write(context, search_type, ip):
     count = 0
     for i in ip:
@@ -35,8 +45,13 @@ def solve_and_write(context, search_type, ip):
 
 
 if __name__ == "__main__":
-    # Open input files and transform inputs for search methods
+    # delete previous output files
+    old_files = os.listdir('./')
+    for item in old_files:
+        if item.endswith("search.txt") or item.endswith("solution.txt"):
+            os.remove(os.path.join('./', item))
 
+    # Open input files and transform inputs for search methods
     f = open('input.txt', "r")
     puzzles = f.readlines()
     input_puzzles = []
