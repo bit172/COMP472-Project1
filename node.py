@@ -1,8 +1,5 @@
 import numpy as np
 
-from heuristics import h2, h
-
-
 def stringify(board):
     s = ""
     for i in range(Node.n):

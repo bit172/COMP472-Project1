@@ -1,6 +1,6 @@
 import numpy as np
 
-from heuristics import h, h2
+from heuristics import h
 from node import Node
 
 from queue import PriorityQueue
@@ -15,8 +15,9 @@ class BFS(Strategy):
         initial_board = Node(params[0], params[3])
         goal = np.zeros((params[0], params[0]), dtype=np.uint8)
         open_q = PriorityQueue()
-        open_q.put(PQBFSItem(h2(initial_board.v, params[0]), initial_board))
-        # open_q.put(PQItem(h(initial_board.string_v), initial_board))
+        open_q.put(PQBFSItem(h(initial_board.v, params[0]), initial_board))
+
+
         closed = set()
         length = 0
         max_l = params[2]
@@ -36,5 +37,5 @@ class BFS(Strategy):
             children = current.node.find_children(False)
             for child in children:
                 child.p = current.node
-                new_child = PQBFSItem(h2(child.v, params[0]), child)
+                new_child = PQBFSItem(h(child.v, params[0]), child)
                 open_q.put(new_child)

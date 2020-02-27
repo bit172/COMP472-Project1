@@ -1,6 +1,6 @@
 import numpy as np
 
-from heuristics import h2
+from heuristics import h
 from node import Node
 
 from queue import PriorityQueue
@@ -15,8 +15,9 @@ class AStar(Strategy):
         goal = np.zeros((params[0], params[0]), dtype=np.uint8)
         depth = 1
         open_q = PriorityQueue()
-        open_q.put(PQAStarItem(depth, h2(initial_board.v, params[0]), initial_board))
-        # open_q.put(PQItem(h(initial_board.string_v), initial_board))
+
+        open_q.put(PQAStarItem(depth, h(initial_board.v, params[0]), initial_board))
+
         closed = set()
         length = 0
         max_l = params[2]
@@ -36,7 +37,7 @@ class AStar(Strategy):
 
             children = current.node.find_children(False)
             for child in children:
-                h = h2(child.v, params[0])
+                heuristic = h(child.v, params[0])
                 child.p = current.node
-                new_child = PQAStarItem(depth, h, child)
+                new_child = PQAStarItem(depth, heuristic, child)
                 open_q.put(new_child)
