@@ -32,6 +32,12 @@ class Node:
         self.touched = None
 
     def find_children(self, reverse):
+        """
+        Finds all resulting boards for every token when it is touched.
+
+        :param reverse: boolean value reverses the output
+        :return: ndarray of all possible boards
+        """
         # Data type of the string_child array which consists of
         # a string representation of the state of the child board and
         # a string for the position of the token touched to reach it

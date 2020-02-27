@@ -1,4 +1,9 @@
 def h(x):
+    """
+    This heuristic function computes the amount of black tokens on a board
+    :param x: board as a string
+    :return: number of black tiles
+    """
     black = 0
     for i in range(len(x)):
         if x[i] == "1":
@@ -8,15 +13,15 @@ def h(x):
 
 def h2(board, n):
     part_of_pattern = 0
-    totalBlack = 0
+    total_black = 0
 
     for i in range(n):
         for j in range(n):
             if board[i, j]:
-                totalBlack += 1
+                total_black += 1
                 if is_pattern(board, n, i, j):
                     part_of_pattern += tokens_covered(board, n, i, j)
-    return totalBlack + abs(totalBlack - part_of_pattern)
+    return total_black + abs(total_black - part_of_pattern)
 
 
 def is_pattern(board, n, i, j):
