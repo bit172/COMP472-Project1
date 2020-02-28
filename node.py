@@ -28,11 +28,11 @@ class Node:
         # Position of touched token to get to current board
         self.touched = None
 
-    def find_children(self, reverse):
+    def find_children(self, sort):
         """
         Finds all resulting boards for every token when it is touched.
 
-        :param reverse: boolean value reverses the output
+        :param sort: boolean value that determines if the children should be sorted
         :return: ndarray of all possible boards
         """
         # Data type of the string_child array which consists of
@@ -81,10 +81,9 @@ class Node:
                 string_children[index]["touched"] = touched
                 index += 1
         # sort the children (in reverse order for adding to stack)
-        if reverse:
+        if sort:
             string_children[::-1].sort()
-        else:
-            string_children.sort()
+
         # create the nodes using the string version of the board
         for idx, string_child in enumerate(string_children):
             children[idx] = Node(Node.n, string_child["child"])
