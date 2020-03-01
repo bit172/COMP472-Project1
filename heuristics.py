@@ -10,7 +10,7 @@ def h(board, n):
                     part_of_pattern += tokens_covered(board, n, i, j)
     # abs(total_black - part_of_pattern) = number of overlapped tiles in a pattern OR number of tiles that's not part
     # of a pattern
-    return total_black + abs(total_black - part_of_pattern)
+    return round((total_black + abs(total_black - part_of_pattern))/10)
 
 
 def is_pattern(board, n, i, j):
