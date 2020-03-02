@@ -18,7 +18,6 @@ class BFS(Strategy):
         open_q.put(PQBFSItem(h(initial_board.v, params[0]), initial_board))
         # open_q.put(PQBFSItem(h1(initial_board.string_v), initial_board))
 
-
         closed = set()
         length = 0
         max_l = params[2]

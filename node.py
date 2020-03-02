@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def stringify(board):
     s = ""
     for i in range(Node.n):

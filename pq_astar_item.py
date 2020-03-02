@@ -1,5 +1,5 @@
 class PQAStarItem:
-    def __init__(self,  g, h, node):
+    def __init__(self, g, h, node):
         self.g = g
         self.h = h
         self.f = g + h

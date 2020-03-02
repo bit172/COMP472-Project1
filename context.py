@@ -5,6 +5,9 @@ from node import Node
 
 
 class Context:
+    """
+    Class used to define a context for strategies
+    """
 
     def __init__(self, strategy: Strategy) -> None:
         self._strategy = strategy
